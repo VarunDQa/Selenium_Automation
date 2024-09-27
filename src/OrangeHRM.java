@@ -1,9 +1,10 @@
-import org.openqa.selenium.By;import org.openqa.selenium.WebDriver;
+import java.time.Duration;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-
-public class OrangeHRM{
+public class OrangeHRM {
     public static void main(String[] args) {
         // Create a new instance of the ChromeDriver
         WebDriver driver = new ChromeDriver();
@@ -14,11 +15,13 @@ public class OrangeHRM{
 
             // Navigate to the login page
             driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+            
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
 
             // Log in
             WebElement username = driver.findElement(By.name("username"));
             WebElement password = driver.findElement(By.name("password"));
-            WebElement loginButton = driver.findElement(By.xpath("//button[@type='submit']"));
+            WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
 
             username.sendKeys("Admin");
             password.sendKeys("admin123");
